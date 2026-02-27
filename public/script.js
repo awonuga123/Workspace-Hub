@@ -45,7 +45,7 @@ function renderProducts(products) {
   grid.innerHTML = products.map(product => `
     <div class="product-card">
       <div class="product-image">
-        ${getProductEmoji(product.category)}
+        <img src="${getProductImage(product.category, product.name)}" alt="${product.name}" />
       </div>
       <div class="product-info">
         <div class="product-name">${product.name}</div>
@@ -61,16 +61,48 @@ function renderProducts(products) {
   `).join('');
 }
 
-// Get emoji based on category
-function getProductEmoji(category) {
-  const emojis = {
-    furniture: '🪑',
-    peripherals: '⌨️',
-    monitors: '🖥️',
-    lighting: '💡',
-    accessories: '📦'
+// Get professional product images based on category
+function getProductImage(category, productName) {
+  const images = {
+    furniture: [
+      'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1611269431079-a0d4e0f41e8b?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=300&fit=crop'
+    ],
+    peripherals: [
+      'https://images.unsplash.com/photo-1587829191301-41ea6cdfbf0d?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1606933248051-5ce98adc476d?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1525865267965-fbd022a6c48d?w=400&h=300&fit=crop'
+    ],
+    monitors: [
+      'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1559056199-641a0ac8b3f4?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1547394030-6f6a15d8673e?w=400&h=300&fit=crop'
+    ],
+    lighting: [
+      'https://images.unsplash.com/photo-1565636166750-e51df1bdc82f?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1546159092-9a0b0e62dc7d?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1565193540876-58f520b849bf?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1545269865-cbf461f313cc?w=400&h=300&fit=crop'
+    ],
+    accessories: [
+      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop',
+      'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&h=300&fit=crop'
+    ]
   };
-  return emojis[category] || '🛒';
+
+  const categoryImages = images[category] || images.accessories;
+  const hashCode = productName.split('').reduce((a, b) => {
+    a = ((a << 5) - a) + b.charCodeAt(0);
+    return a & a;
+  }, 0);
+  const index = Math.abs(hashCode) % categoryImages.length;
+  return categoryImages[index];
 }
 
 // Filter products
@@ -264,6 +296,27 @@ function loadCartFromStorage() {
 
 // Notification
 function showNotification(message) {
-  // Simple notification (can be enhanced with toast library)
-  console.log(message);
+  const notification = document.createElement('div');
+  notification.style.cssText = `
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #0f766e 0%, #047857 100%);
+    color: white;
+    padding: 16px 24px;
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(15, 118, 110, 0.3);
+    z-index: 500;
+    animation: slideIn 0.3s ease;
+    font-weight: 600;
+    max-width: 300px;
+  `;
+  notification.textContent = message;
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.style.animation = 'slideOut 0.3s ease';
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
 }
+
