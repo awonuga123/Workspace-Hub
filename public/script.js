@@ -61,48 +61,120 @@ function renderProducts(products) {
   `).join('');
 }
 
-// Get professional product images based on category
+// Get professional product images based on product name
 function getProductImage(category, productName) {
-  const images = {
+  const productImages = {
+    // FURNITURE
+    'Ergonomic Office Chair': 'https://images.unsplash.com/photo-1592078615290-033ee584e267?w=500&h=400&fit=crop',
+    'Standing Desk 60"': 'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=500&h=400&fit=crop',
+    'Executive Leather Chair': 'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&h=400&fit=crop',
+    'Gaming Chair Pro': 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&h=400&fit=crop',
+    'White Desk Organizer': 'https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=500&h=400&fit=crop',
+    'Bamboo Standing Desk': 'https://images.unsplash.com/photo-1611269431079-a0d4e0f41e8b?w=500&h=400&fit=crop',
+    'Adjustable Monitor Stand': 'https://images.unsplash.com/photo-1599180722290-b674d6850fef?w=500&h=400&fit=crop',
+    'Desk Shelf Riser': 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=400&fit=crop',
+    'Office Bookshelf': 'https://images.unsplash.com/photo-1453928582348-e0612415ae0d?w=500&h=400&fit=crop',
+    'Floating Wall Shelf': 'https://images.unsplash.com/photo-1565193540876-58f520b849bf?w=500&h=400&fit=crop',
+    'Corner Desk Setup': 'https://images.unsplash.com/photo-1487014929ada-8385a97a63d4?w=500&h=400&fit=crop',
+    'Mesh Back Office Chair': 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&h=400&fit=crop',
+
+    // PERIPHERALS
+    'Mechanical Keyboard': 'https://images.unsplash.com/photo-1587829191301-41ea6cdfbf0d?w=500&h=400&fit=crop',
+    'Wireless Mouse': 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=500&h=400&fit=crop',
+    'Bluetooth Keyboard': 'https://images.unsplash.com/photo-1587829191301-41ea6cdfbf0d?w=500&h=400&fit=crop',
+    'Gaming Mouse Pro': 'https://images.unsplash.com/photo-1527814050087-3793815479db?w=500&h=400&fit=crop',
+    'USB-C Hub': 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=400&fit=crop',
+    'Wireless Headphones': 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=400&fit=crop',
+    'Studio Microphone': 'https://images.unsplash.com/photo-1606933248051-5ce98adc476d?w=500&h=400&fit=crop',
+    'Mechanical Numpad': 'https://images.unsplash.com/photo-1587829191301-41ea6cdfbf0d?w=500&h=400&fit=crop',
+    'Desktop Speakers': 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=400&fit=crop',
+    'Webcam 4K': 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=400&fit=crop',
+    'Portable SSD 1TB': 'https://images.unsplash.com/photo-1597872200969-2b65d56bd16b?w=500&h=400&fit=crop',
+    'Docking Station': 'https://images.unsplash.com/photo-1526374965328-7f5ae4e8b08e?w=500&h=400&fit=crop',
+
+    // MONITORS
+    '27" 4K Monitor': 'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&h=400&fit=crop',
+    '32" Curved Gaming Monitor': 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&h=400&fit=crop',
+    '24" Full HD Monitor': 'https://images.unsplash.com/photo-1559056199-641a0ac8b3f4?w=500&h=400&fit=crop',
+    '34" Ultrawide Monitor': 'https://images.unsplash.com/photo-1547394030-6f6a15d8673e?w=500&h=400&fit=crop',
+    'Dual Monitor Stand Arm': 'https://images.unsplash.com/photo-1599180722290-b674d6850fef?w=500&h=400&fit=crop',
+    '15.6" Portable Monitor': 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=500&h=400&fit=crop',
+    '43" 4K Display': 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=400&fit=crop',
+    '21.5" Budget Monitor': 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=500&h=400&fit=crop',
+    'Curved 144Hz Monitor': 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&h=400&fit=crop',
+
+    // LIGHTING
+    'Monitor Light Bar': 'https://images.unsplash.com/photo-1565636166750-e51df1bdc82f?w=500&h=400&fit=crop',
+    'Desk Lamp LED': 'https://images.unsplash.com/photo-1546159092-9a0b0e62dc7d?w=500&h=400&fit=crop',
+    'RGB LED Strip': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=400&fit=crop',
+    'Ring Light': 'https://images.unsplash.com/photo-1574169208507-84007bde4df5?w=500&h=400&fit=crop',
+    'Ambient Desk Light': 'https://images.unsplash.com/photo-1545269865-cbf461f313cc?w=500&h=400&fit=crop',
+    'Floor Lamp Arc': 'https://images.unsplash.com/photo-1578500494198-246f612d03b3?w=500&h=400&fit=crop',
+    'Smart Bulb Starter Kit': 'https://images.unsplash.com/photo-1565636166750-e51df1bdc82f?w=500&h=400&fit=crop',
+    'Neon Light Sign': 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=400&fit=crop',
+    'Warm White Desk Lamp': 'https://images.unsplash.com/photo-1546159092-9a0b0e62dc7d?w=500&h=400&fit=crop',
+
+    // ACCESSORIES
+    'Desk Organizer Set': 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=400&fit=crop',
+    'Cable Management Box': 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&h=400&fit=crop',
+    'Desk Mat': 'https://images.unsplash.com/photo-1614008375890-cb53b6c5f8d5?w=500&h=400&fit=crop',
+    'Monitor Filter': 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=400&fit=crop',
+    'Phone Stand': 'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&h=400&fit=crop',
+    'Desk Drawer Organizer': 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=500&h=400&fit=crop',
+    'Wrist Rest Pad': 'https://images.unsplash.com/photo-1578926078328-123456789000?w=500&h=400&fit=crop',
+    'Desk Plant': 'https://images.unsplash.com/photo-1530836369250-ef72a3f5cda8?w=500&h=400&fit=crop',
+    'USB Power Strip': 'https://images.unsplash.com/photo-1498049860654-af1a5c566840?w=500&h=400&fit=crop',
+    'Keyboard Dust Cover': 'https://images.unsplash.com/photo-1587829191301-41ea6cdfbf0d?w=500&h=400&fit=crop',
+    'Monitor Arm Adapter': 'https://images.unsplash.com/photo-1599180722290-b674d6850fef?w=500&h=400&fit=crop',
+    'Desk Lamp USB Charger': 'https://images.unsplash.com/photo-1546159092-9a0b0e62dc7d?w=500&h=400&fit=crop'
+  };
+
+  // Try exact product name first
+  if (productImages[productName]) {
+    return productImages[productName];
+  }
+
+  // Fallback to category-based images
+  const categoryImages = {
     furniture: [
-      'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1611269431079-a0d4e0f41e8b?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=300&fit=crop'
+      'https://images.unsplash.com/photo-1593642632823-8f785ba67e45?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1611269431079-a0d4e0f41e8b?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1487014929ada-8385a97a63d4?w=500&h=400&fit=crop'
     ],
     peripherals: [
-      'https://images.unsplash.com/photo-1587829191301-41ea6cdfbf0d?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1527814050087-3793815479db?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1606933248051-5ce98adc476d?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1525865267965-fbd022a6c48d?w=400&h=300&fit=crop'
+      'https://images.unsplash.com/photo-1587829191301-41ea6cdfbf0d?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1527814050087-3793815479db?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1606933248051-5ce98adc476d?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=400&fit=crop'
     ],
     monitors: [
-      'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1559056199-641a0ac8b3f4?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1547394030-6f6a15d8673e?w=400&h=300&fit=crop'
+      'https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1559056199-641a0ac8b3f4?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1547394030-6f6a15d8673e?w=500&h=400&fit=crop'
     ],
     lighting: [
-      'https://images.unsplash.com/photo-1565636166750-e51df1bdc82f?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1546159092-9a0b0e62dc7d?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1565193540876-58f520b849bf?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1545269865-cbf461f313cc?w=400&h=300&fit=crop'
+      'https://images.unsplash.com/photo-1565636166750-e51df1bdc82f?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1546159092-9a0b0e62dc7d?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1574169208507-84007bde4df5?w=500&h=400&fit=crop'
     ],
     accessories: [
-      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=300&fit=crop',
-      'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=400&h=300&fit=crop'
+      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1614008375890-cb53b6c5f8d5?w=500&h=400&fit=crop',
+      'https://images.unsplash.com/photo-1491553895911-0055eca6402d?w=500&h=400&fit=crop'
     ]
   };
 
-  const categoryImages = images[category] || images.accessories;
+  const images = categoryImages[category] || categoryImages.accessories;
   const hashCode = productName.split('').reduce((a, b) => {
     a = ((a << 5) - a) + b.charCodeAt(0);
     return a & a;
   }, 0);
-  const index = Math.abs(hashCode) % categoryImages.length;
-  return categoryImages[index];
+  const index = Math.abs(hashCode) % images.length;
+  return images[index];
 }
 
 // Filter products
